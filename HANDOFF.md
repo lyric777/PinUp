@@ -11,18 +11,18 @@ Current product direction:
 - Target platform: `macOS 15+`, `Apple Silicon`, `Swift 6`, `SwiftUI`
 
 ## Current Repository State
-- The repo contains a single Xcode app project: [PinUp.xcodeproj](/Users/katyxu.z/PinUp/PinUp.xcodeproj)
-- Main source root: [PinUp](/Users/katyxu.z/PinUp/PinUp)
-- Local build artifacts are ignored via [.gitignore](/Users/katyxu.z/PinUp/.gitignore)
+- The repo contains a single Xcode app project: [PinUp.xcodeproj](PinUp.xcodeproj)
+- Main source root: [PinUp](PinUp)
+- Local build artifacts are ignored via [.gitignore](.gitignore)
 
 Build status at handoff:
-- `xcodebuild -project PinUp.xcodeproj -scheme PinUp -configuration Debug -derivedDataPath /Users/katyxu.z/PinUp/.derivedData build`
+- `xcodebuild -project PinUp.xcodeproj -scheme PinUp -configuration Debug -derivedDataPath .derivedData build`
 - Last known result: `BUILD SUCCEEDED`
 
 ## What Has Been Implemented
 ### App shell
 - Menu bar app entry via SwiftUI `MenuBarExtra`
-- `LSUIElement = true` in [Info.plist](/Users/katyxu.z/PinUp/PinUp/Info.plist)
+- `LSUIElement = true` in [Info.plist](PinUp/Info.plist)
 - No normal Dock icon / no main app window
 - Settings window and permissions onboarding window are available
 
@@ -33,8 +33,8 @@ Build status at handoff:
 - First-launch permissions onboarding window
 
 Relevant files:
-- [PermissionsManager.swift](/Users/katyxu.z/PinUp/PinUp/Permissions/PermissionsManager.swift)
-- [PermissionsOnboardingView.swift](/Users/katyxu.z/PinUp/PinUp/AppShell/PermissionsOnboardingView.swift)
+- [PermissionsManager.swift](PinUp/Permissions/PermissionsManager.swift)
+- [PermissionsOnboardingView.swift](PinUp/AppShell/PermissionsOnboardingView.swift)
 
 ### Pin flow
 - Global hotkeys:
@@ -47,11 +47,11 @@ Relevant files:
 - Single active pin session only
 
 Relevant files:
-- [PinUpAppState.swift](/Users/katyxu.z/PinUp/PinUp/State/PinUpAppState.swift)
-- [FocusedWindowResolver.swift](/Users/katyxu.z/PinUp/PinUp/FocusedWindow/FocusedWindowResolver.swift)
-- [WindowMatcher.swift](/Users/katyxu.z/PinUp/PinUp/FocusedWindow/WindowMatcher.swift)
-- [CaptureService.swift](/Users/katyxu.z/PinUp/PinUp/Capture/CaptureService.swift)
-- [OverlayPanelController.swift](/Users/katyxu.z/PinUp/PinUp/Overlay/OverlayPanelController.swift)
+- [PinUpAppState.swift](PinUp/State/PinUpAppState.swift)
+- [FocusedWindowResolver.swift](PinUp/FocusedWindow/FocusedWindowResolver.swift)
+- [WindowMatcher.swift](PinUp/FocusedWindow/WindowMatcher.swift)
+- [CaptureService.swift](PinUp/Capture/CaptureService.swift)
+- [OverlayPanelController.swift](PinUp/Overlay/OverlayPanelController.swift)
 
 ### UX/status improvements already added
 - Pin flow now exposes explicit states instead of instantly pretending success
@@ -66,9 +66,9 @@ Relevant files:
 - Menu bar menu shows current status text and target info
 
 Relevant files:
-- [PinSessionState.swift](/Users/katyxu.z/PinUp/PinUp/State/PinSessionState.swift)
-- [PinnedOverlayView.swift](/Users/katyxu.z/PinUp/PinUp/Overlay/PinnedOverlayView.swift)
-- [MenuBarContentView.swift](/Users/katyxu.z/PinUp/PinUp/MenuBar/MenuBarContentView.swift)
+- [PinSessionState.swift](PinUp/State/PinSessionState.swift)
+- [PinnedOverlayView.swift](PinUp/Overlay/PinnedOverlayView.swift)
+- [MenuBarContentView.swift](PinUp/MenuBar/MenuBarContentView.swift)
 
 ## What Has Been Manually Observed
 These observations came from interactive debugging, not automated tests:
@@ -133,7 +133,7 @@ Possible causes to investigate next:
 ## Suggested Manual Validation Flow
 When picking this project up in a new thread, test in this order:
 
-1. Open [PinUp.xcodeproj](/Users/katyxu.z/PinUp/PinUp.xcodeproj) in Xcode
+1. Open [PinUp.xcodeproj](PinUp.xcodeproj) in Xcode
 2. Run scheme `PinUp` on `My Mac`
 3. Grant `Accessibility`
 4. Grant `Screen Recording`
@@ -146,12 +146,12 @@ When picking this project up in a new thread, test in this order:
 8. Then test Android Emulator
 
 ## Important Files To Read First
-- [PinUpAppState.swift](/Users/katyxu.z/PinUp/PinUp/State/PinUpAppState.swift)
-- [CaptureService.swift](/Users/katyxu.z/PinUp/PinUp/Capture/CaptureService.swift)
-- [FocusedWindowResolver.swift](/Users/katyxu.z/PinUp/PinUp/FocusedWindow/FocusedWindowResolver.swift)
-- [WindowMatcher.swift](/Users/katyxu.z/PinUp/PinUp/FocusedWindow/WindowMatcher.swift)
-- [OverlayPanelController.swift](/Users/katyxu.z/PinUp/PinUp/Overlay/OverlayPanelController.swift)
-- [PinnedOverlayView.swift](/Users/katyxu.z/PinUp/PinUp/Overlay/PinnedOverlayView.swift)
+- [PinUpAppState.swift](PinUp/State/PinUpAppState.swift)
+- [CaptureService.swift](PinUp/Capture/CaptureService.swift)
+- [FocusedWindowResolver.swift](PinUp/FocusedWindow/FocusedWindowResolver.swift)
+- [WindowMatcher.swift](PinUp/FocusedWindow/WindowMatcher.swift)
+- [OverlayPanelController.swift](PinUp/Overlay/OverlayPanelController.swift)
+- [PinnedOverlayView.swift](PinUp/Overlay/PinnedOverlayView.swift)
 
 ## Short Summary For The Next Thread
 The MVP app skeleton is in place and builds successfully. The main remaining challenge is not project setup anymore; it is capture reliability, especially for Android Emulator. UX has already been improved so that pinning now clearly distinguishes `preparing`, `connecting`, `pinned`, and `preview unavailable` instead of showing a misleading black-screen success state.
