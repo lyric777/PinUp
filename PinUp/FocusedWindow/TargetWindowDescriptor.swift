@@ -17,4 +17,16 @@ struct TargetWindowDescriptor: Identifiable, Equatable {
 
         return "\(appName) - \(trimmed)"
     }
+
+    var debugSummary: String {
+        let trimmedTitle = windowTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let title = trimmedTitle.isEmpty ? "<empty>" : trimmedTitle
+        return "pid=\(pid), app=\(appName), title=\(title), cgWindowID=\(cgWindowID), frame=\(frame.debugSummary)"
+    }
+}
+
+private extension CGRect {
+    var debugSummary: String {
+        "x=\(Int(origin.x)), y=\(Int(origin.y)), w=\(Int(width)), h=\(Int(height))"
+    }
 }

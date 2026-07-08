@@ -55,4 +55,8 @@ final class PermissionsWindowController {
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
     }
+
+    func close() {
+        window.close()
+    }
 }

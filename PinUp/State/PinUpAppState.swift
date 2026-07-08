@@ -94,6 +94,11 @@ final class PinUpAppState: ObservableObject {
 
     func refreshPermissions() {
         permissionState = permissionsManager.currentPermissionState()
+        PinUpDebugLogger.log("Permission state refreshed: \(permissionState.debugSummary)")
+
+        if permissionState == .ready {
+            permissionsController.close()
+        }
     }
 
     func requestAccessibilityPrompt() {
@@ -110,6 +115,13 @@ final class PinUpAppState: ObservableObject {
 
     func showSettings() {
         settingsController.show()
+    }
+
+    func copyDebugLogToClipboard() {
+        let logText = PinUpDebugLogger.recentLogText()
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(logText.isEmpty ? "[PinUp] No debug logs captured yet." : logText, forType: .string)
     }
 
     func pinFocusedWindow() async {
@@ -136,6 +148,7 @@ final class PinUpAppState: ObservableObject {
             try await captureService.startCapture(for: target)
             scheduleFirstFrameTimeout(for: captureAttemptID, target: target)
         } catch {
+            PinUpDebugLogger.log("Pin focused window failed: \(error.localizedDescription)")
             overlayController.close()
             currentTarget = nil
             setFailure(error)

@@ -36,4 +36,8 @@ enum PermissionState: Equatable {
             return "Accessibility + Screen Recording Needed"
         }
     }
+
+    var debugSummary: String {
+        "accessibility=\(hasAccessibility), screenRecording=\(hasScreenRecording), state=\(summaryText)"
+    }
 }

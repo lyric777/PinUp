@@ -21,10 +21,12 @@ struct WindowMatcher {
                 candidate.bounds.height > 48
             }
 
+        PinUpDebugLogger.log("CGWindow candidates for pid=\(pid): \(candidates.map(\.debugSummary).joined(separator: " | "))")
+
         let normalizedTitle = focusedWindowTitle.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         let normalizedOwner = appName.lowercased()
 
-        let bestCandidate = candidates
+        let scoredCandidates = candidates
             .map { candidate in
                 (candidate, score(candidate: candidate, title: normalizedTitle, owner: normalizedOwner, frame: focusedWindowFrame))
             }
@@ -34,19 +36,23 @@ struct WindowMatcher {
                 }
                 return lhs.1 > rhs.1
             }
-            .first
+
+        PinUpDebugLogger.log("CGWindow candidate scores: \(scoredCandidates.map { "\($0.0.windowID):\($0.1)" }.joined(separator: ", "))")
+
+        let bestCandidate = scoredCandidates.first
 
         guard let candidate = bestCandidate?.0 else {
             return nil
         }
 
         let resolvedTitle = candidate.windowName.isEmpty ? focusedWindowTitle : candidate.windowName
+        let resolvedFrame = focusedWindowFrame.equalTo(.zero) ? candidate.bounds : focusedWindowFrame
         return TargetWindowDescriptor(
             id: "\(candidate.ownerPID)-\(candidate.windowID)",
             pid: candidate.ownerPID,
             appName: candidate.ownerName.isEmpty ? appName : candidate.ownerName,
             windowTitle: resolvedTitle,
-            frame: candidate.bounds,
+            frame: resolvedFrame,
             cgWindowID: candidate.windowID
         )
     }
@@ -107,5 +113,19 @@ private struct CGWindowCandidate {
         self.bounds = bounds
         self.layer = dictionary[kCGWindowLayer as String] as? Int ?? 0
         self.alpha = dictionary[kCGWindowAlpha as String] as? Double ?? 1.0
+    }
+}
+
+private extension CGWindowCandidate {
+    var debugSummary: String {
+        let title = windowName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let owner = ownerName.trimmingCharacters(in: .whitespacesAndNewlines)
+        return "id=\(windowID), owner=\(owner.isEmpty ? "<empty>" : owner), title=\(title.isEmpty ? "<empty>" : title), layer=\(layer), alpha=\(String(format: "%.2f", alpha)), frame=\(bounds.debugSummary)"
+    }
+}
+
+private extension CGRect {
+    var debugSummary: String {
+        "x=\(Int(origin.x)), y=\(Int(origin.y)), w=\(Int(width)), h=\(Int(height))"
     }
 }

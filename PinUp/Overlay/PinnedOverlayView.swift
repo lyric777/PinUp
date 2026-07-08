@@ -13,17 +13,13 @@ struct PinnedOverlayView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.92)
-
             if let image = viewModel.image {
-                GeometryReader { geometry in
-                    Image(decorative: image, scale: 1)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .background(Color.black)
-                }
+                Image(decorative: image, scale: 1)
+                    .resizable()
+                    .scaledToFit()
             } else {
+                Color.black.opacity(0.92)
+
                 VStack(spacing: 14) {
                     Image(systemName: "pin")
                         .font(.system(size: 28, weight: .semibold))
@@ -48,6 +44,6 @@ struct PinnedOverlayView: View {
                 .padding(24)
             }
         }
-        .frame(minWidth: 320, minHeight: 200)
+        .frame(minWidth: 180, minHeight: 160)
     }
 }

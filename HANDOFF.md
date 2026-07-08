@@ -70,6 +70,23 @@ Relevant files:
 - [PinnedOverlayView.swift](PinUp/Overlay/PinnedOverlayView.swift)
 - [MenuBarContentView.swift](PinUp/MenuBar/MenuBarContentView.swift)
 
+### Debug logging added for capture investigation
+- Debug builds now print focused AX window metadata:
+  - PID
+  - app name
+  - AX title
+  - AX frame
+- Window matching logs filtered `CGWindowList` candidates and their scores
+- Capture startup logs related `ScreenCaptureKit` windows for the same PID / target `CGWindowID`
+- Capture output logs whether sample buffers arrive and when the first image frame is produced
+- These logs are behind `#if DEBUG`
+
+Relevant files:
+- [PinUpDebugLogger.swift](PinUp/Support/PinUpDebugLogger.swift)
+- [FocusedWindowResolver.swift](PinUp/FocusedWindow/FocusedWindowResolver.swift)
+- [WindowMatcher.swift](PinUp/FocusedWindow/WindowMatcher.swift)
+- [CaptureService.swift](PinUp/Capture/CaptureService.swift)
+
 ## What Has Been Manually Observed
 These observations came from interactive debugging, not automated tests:
 
@@ -118,17 +135,12 @@ Possible causes to investigate next:
 3. If standard apps work and Emulator does not, isolate Emulator-specific window/capture behavior
 
 ### After that
-1. Add lightweight logging around:
-   - resolved AX window title/frame
-   - chosen `CGWindowID`
-   - `SCShareableContent.windows` candidates for the same PID
-   - whether any sample buffers actually arrive
-2. Add a small debug surface in the menu or settings to inspect current target metadata
-3. Add unit tests for:
+1. Add a small debug surface in the menu or settings to inspect current target metadata
+2. Add unit tests for:
    - `PermissionState`
    - `PinSessionState`
    - `WindowMatcher` scoring behavior
-4. Consider a debug-only mode that temporarily shows a Dock icon if debugging becomes painful
+3. Consider a debug-only mode that temporarily shows a Dock icon if debugging becomes painful
 
 ## Suggested Manual Validation Flow
 When picking this project up in a new thread, test in this order:

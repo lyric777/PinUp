@@ -19,16 +19,21 @@ struct FocusedWindowResolver {
         let focusedWindowElement = try copyFocusedWindow(from: appElement)
         let title = copyStringAttribute(kAXTitleAttribute as CFString, from: focusedWindowElement) ?? ""
         let frame = copyWindowFrame(from: focusedWindowElement)
+        let appName = app.localizedName ?? app.bundleIdentifier ?? "Unknown App"
+
+        PinUpDebugLogger.log("Resolved focused AX window: pid=\(pid), app=\(appName), title=\(title.debugLogValue), frame=\(frame.debugSummary)")
 
         guard let descriptor = matcher.matchWindow(
             pid: pid,
-            appName: app.localizedName ?? app.bundleIdentifier ?? "Unknown App",
+            appName: appName,
             focusedWindowTitle: title,
             focusedWindowFrame: frame
         ) else {
+            PinUpDebugLogger.log("No CGWindow match for focused AX window: pid=\(pid), app=\(appName), title=\(title.debugLogValue), frame=\(frame.debugSummary)")
             throw PinUpError.windowNotMatchable
         }
 
+        PinUpDebugLogger.log("Matched target window: \(descriptor.debugSummary)")
         return descriptor
     }
 
@@ -81,5 +86,18 @@ struct FocusedWindowResolver {
         }
 
         return CGRect(origin: point, size: size)
+    }
+}
+
+private extension CGRect {
+    var debugSummary: String {
+        "x=\(Int(origin.x)), y=\(Int(origin.y)), w=\(Int(width)), h=\(Int(height))"
+    }
+}
+
+private extension String {
+    var debugLogValue: String {
+        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty ? "<empty>" : trimmed
     }
 }

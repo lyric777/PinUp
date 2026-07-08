@@ -44,6 +44,10 @@ struct MenuBarContentView: View {
 
         Divider()
 
+        Button("Copy Debug Log") {
+            appState.copyDebugLogToClipboard()
+        }
+
         Button("Settings") {
             appState.showSettings()
         }
