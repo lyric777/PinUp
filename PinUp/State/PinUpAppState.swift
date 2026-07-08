@@ -11,6 +11,18 @@ final class PinUpAppState: ObservableObject {
     @Published private(set) var pinState: PinSessionState = .idle
     @Published private(set) var currentTarget: TargetWindowDescriptor?
     @Published private(set) var lastErrorMessage: String?
+    @Published var selectedLanguage: AppLanguage = L10n.appLanguage {
+        didSet {
+            guard selectedLanguage != oldValue else {
+                return
+            }
+
+            L10n.appLanguage = selectedLanguage
+            settingsController.refreshTitle()
+            permissionsController.refreshTitle()
+            refreshDisplayedMessages()
+        }
+    }
 
     var isPinned: Bool {
         pinState.isPinned
@@ -36,16 +48,16 @@ final class PinUpAppState: ObservableObject {
     var statusTitle: String {
         switch pinState {
         case .idle:
-            return "Ready to Pin"
+            return L10n.tr("ready_to_pin")
         case .resolvingTarget:
-            return "Preparing preview…"
+            return L10n.tr("preparing_preview_status")
         case .startingCapture:
             let name = currentTarget?.appName ?? "window"
-            return "Connecting to \(name)…"
+            return L10n.tr("connecting_to_format", name)
         case .pinned:
-            return currentTarget.map { "Pinned: \($0.displayName)" } ?? "Pinned"
+            return currentTarget.map { L10n.tr("pinned_format", $0.displayName) } ?? L10n.tr("pinned")
         case .failed:
-            return "Action Needed"
+            return L10n.tr("action_needed")
         }
     }
 
@@ -124,6 +136,12 @@ final class PinUpAppState: ObservableObject {
         pasteboard.setString(logText.isEmpty ? "[PinUp] No debug logs captured yet." : logText, forType: .string)
     }
 
+    private func refreshDisplayedMessages() {
+        if case .failed = pinState, let lastErrorMessage {
+            overlayController.update(status: lastErrorMessage, showsProgress: false)
+        }
+    }
+
     func pinFocusedWindow() async {
         refreshPermissions()
         guard permissionState == .ready else {
@@ -136,13 +154,13 @@ final class PinUpAppState: ObservableObject {
         lastErrorMessage = nil
         hasReceivedFirstFrame = false
         captureAttemptID = UUID()
-        overlayController.update(status: "Preparing preview…", showsProgress: true)
+        overlayController.update(status: L10n.tr("preparing_preview_status"), showsProgress: true)
 
         do {
             let target = try focusedWindowResolver.resolveFocusedWindow()
             currentTarget = target
             overlayController.show(for: target)
-            overlayController.update(status: "Connecting to \(target.appName)…", showsProgress: true)
+            overlayController.update(status: L10n.tr("connecting_to_format", target.appName), showsProgress: true)
 
             pinState = .startingCapture
             try await captureService.startCapture(for: target)
@@ -191,7 +209,7 @@ final class PinUpAppState: ObservableObject {
         overlayController.close()
         currentTarget = nil
         hasReceivedFirstFrame = false
-        pinState = .failed("Capture failed")
+        pinState = .failed(L10n.tr("capture_failed"))
         lastErrorMessage = PinUpError.captureFailed(message).localizedDescription
     }
 
@@ -212,7 +230,7 @@ final class PinUpAppState: ObservableObject {
         hasReceivedFirstFrame = true
         if pinState != .pinned {
             pinState = .pinned
-            overlayController.update(status: "Pinned", showsProgress: false)
+            overlayController.update(status: L10n.tr("pinned"), showsProgress: false)
         }
     }
 
@@ -230,9 +248,9 @@ final class PinUpAppState: ObservableObject {
 
             await self.captureService.stopCapture()
             self.currentTarget = target
-            self.pinState = .failed("Preview unavailable")
-            self.lastErrorMessage = "Connected to \(target.appName), but no preview frames arrived. Try another window or retry."
-            self.overlayController.update(status: "Preview unavailable for this window", showsProgress: false)
+            self.pinState = .failed(L10n.tr("preview_unavailable"))
+            self.lastErrorMessage = L10n.tr("preview_unavailable_message_format", target.appName)
+            self.overlayController.update(status: L10n.tr("preview_unavailable_for_window"), showsProgress: false)
         }
     }
 }

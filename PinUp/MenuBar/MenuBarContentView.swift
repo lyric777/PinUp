@@ -8,7 +8,7 @@ struct MenuBarContentView: View {
             .font(.headline)
             .padding(.bottom, 4)
 
-        Button("Pin Current Window") {
+        Button(L10n.tr("pin_current_window")) {
             Task {
                 await appState.pinFocusedWindow()
             }
@@ -16,7 +16,7 @@ struct MenuBarContentView: View {
         .keyboardShortcut("p", modifiers: [.command, .option])
         .disabled(appState.isBusy)
 
-        Button("Unpin Current Window") {
+        Button(L10n.tr("unpin_current_window")) {
             Task {
                 await appState.unpinCurrentWindow()
             }
@@ -27,11 +27,10 @@ struct MenuBarContentView: View {
         Divider()
 
         Section {
-            LabeledContent("Status", value: appState.pinState.summaryText)
-            LabeledContent("Permissions", value: appState.permissionState.summaryText)
+            LabeledContent(L10n.tr("permissions"), value: appState.permissionState.summaryText)
 
             if let currentTarget = appState.currentTarget {
-                LabeledContent("Target", value: currentTarget.displayName)
+                LabeledContent(L10n.tr("target"), value: currentTarget.displayName)
             }
 
             if let lastError = appState.lastErrorMessage {
@@ -44,15 +43,15 @@ struct MenuBarContentView: View {
 
         Divider()
 
-        Button("Copy Debug Log") {
+        Button(L10n.tr("copy_debug_log")) {
             appState.copyDebugLogToClipboard()
         }
 
-        Button("Settings") {
+        Button(L10n.tr("settings")) {
             appState.showSettings()
         }
 
-        Button("Quit") {
+        Button(L10n.tr("quit")) {
             NSApplication.shared.terminate(nil)
         }
     }

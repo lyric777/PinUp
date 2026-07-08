@@ -13,15 +13,15 @@ enum PinUpError: LocalizedError {
         case .missingPermissions(let state):
             return state.summaryText
         case .noFocusedWindow:
-            return "No focused window could be found."
+            return L10n.tr("missing_focused_window")
         case .selfCaptureDisallowed:
-            return "PinUp cannot pin its own windows."
+            return L10n.tr("self_capture_disallowed")
         case .windowNotMatchable:
-            return "PinUp found the focused app, but could not match a capturable window."
+            return L10n.tr("window_not_matchable")
         case .captureWindowUnavailable:
-            return "The focused window is not available to ScreenCaptureKit right now."
+            return L10n.tr("missing_capture_window")
         case .captureFailed(let message):
-            return "Capture failed: \(message)"
+            return L10n.tr("capture_failed_format", message)
         }
     }
 }

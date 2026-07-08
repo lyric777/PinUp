@@ -4,28 +4,25 @@ struct SettingsView: View {
     @EnvironmentObject private var appState: PinUpAppState
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("PinUp Settings")
-                .font(.title2.bold())
-
-            GroupBox("Shortcuts") {
+        VStack(alignment: .leading, spacing: 18) {
+            GroupBox(L10n.tr("shortcuts")) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Pin current window: Option + Command + P")
-                    Text("Unpin current window: Option + Command + U")
+                    Text(L10n.tr("pin_shortcut"))
+                    Text(L10n.tr("unpin_shortcut"))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
 
-            GroupBox("Permissions") {
+            GroupBox(L10n.tr("permissions")) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Status: \(appState.permissionState.summaryText)")
+                    Text(L10n.tr("status_format", appState.permissionState.summaryText))
 
                     HStack {
-                        Button("Refresh") {
+                        Button(L10n.tr("refresh")) {
                             appState.refreshPermissions()
                         }
 
-                        Button("Open Settings") {
+                        Button(L10n.tr("open_settings")) {
                             appState.openSystemSettingsForPermissions()
                         }
                     }
@@ -33,14 +30,26 @@ struct SettingsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
 
-            GroupBox("Startup") {
-                Text("Launch at login is intentionally left for a later iteration.")
+            GroupBox(L10n.tr("language")) {
+                Picker(L10n.tr("language"), selection: $appState.selectedLanguage) {
+                    ForEach(AppLanguage.allCases) { language in
+                        Text(language.displayName)
+                            .tag(language)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+
+            GroupBox(L10n.tr("startup")) {
+                Text(L10n.tr("launch_at_login_later"))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
 
             Spacer()
         }
-        .padding(20)
-        .frame(width: 420, height: 280)
+        .padding(.top, 18)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
+        .frame(width: 420, height: 330)
     }
 }

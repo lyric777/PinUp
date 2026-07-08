@@ -3,8 +3,8 @@ import SwiftUI
 @MainActor
 final class OverlayViewModel: ObservableObject {
     @Published var image: CGImage?
-    @Published var titleText = "Pinned Preview"
-    @Published var statusText = "Waiting for frames…"
+    @Published var titleText = L10n.tr("pinned_preview")
+    @Published var statusText = L10n.tr("waiting_for_frames")
     @Published var showsProgress = true
 }
 

@@ -26,15 +26,15 @@ enum PinSessionState: Equatable {
     var summaryText: String {
         switch self {
         case .idle:
-            return "Ready to Pin"
+            return L10n.tr("ready_to_pin")
         case .resolvingTarget:
-            return "Preparing Preview…"
+            return L10n.tr("preparing_preview")
         case .startingCapture:
-            return "Connecting…"
+            return L10n.tr("connecting")
         case .pinned:
-            return "Pinned"
+            return L10n.tr("pinned")
         case .failed:
-            return "Action Needed"
+            return L10n.tr("action_needed")
         }
     }
 }

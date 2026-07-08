@@ -5,36 +5,36 @@ struct PermissionsOnboardingView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("PinUp Needs Permissions")
+            Text(L10n.tr("permissions_title"))
                 .font(.title2.bold())
 
-            Text("PinUp uses Accessibility to detect the currently focused window and Screen Recording to mirror that window inside its own floating panel.")
+            Text(L10n.tr("permissions_explanation"))
                 .fixedSize(horizontal: false, vertical: true)
 
             VStack(alignment: .leading, spacing: 10) {
-                Label("Accessibility", systemImage: appState.permissionState.hasAccessibility ? "checkmark.circle.fill" : "exclamationmark.circle")
-                Label("Screen Recording", systemImage: appState.permissionState.hasScreenRecording ? "checkmark.circle.fill" : "exclamationmark.circle")
+                Label(L10n.tr("accessibility"), systemImage: appState.permissionState.hasAccessibility ? "checkmark.circle.fill" : "exclamationmark.circle")
+                Label(L10n.tr("screen_recording"), systemImage: appState.permissionState.hasScreenRecording ? "checkmark.circle.fill" : "exclamationmark.circle")
             }
             .foregroundStyle(.primary)
 
             HStack {
-                Button("Request Accessibility") {
+                Button(L10n.tr("request_accessibility")) {
                     appState.requestAccessibilityPrompt()
                 }
                 .disabled(appState.permissionState.hasAccessibility)
 
-                Button("Request Screen Recording") {
+                Button(L10n.tr("request_screen_recording")) {
                     appState.requestScreenRecordingPrompt()
                 }
                 .disabled(appState.permissionState.hasScreenRecording)
             }
 
             HStack {
-                Button("Open Settings") {
+                Button(L10n.tr("open_settings")) {
                     appState.openSystemSettingsForPermissions()
                 }
 
-                Button("Refresh") {
+                Button(L10n.tr("refresh")) {
                     appState.refreshPermissions()
                 }
             }

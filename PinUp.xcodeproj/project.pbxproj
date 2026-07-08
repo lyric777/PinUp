@@ -26,6 +26,8 @@
 		A00000000000000000000031 /* PinUpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000011 /* PinUpError.swift */; };
 		A00000000000000000000032 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000012 /* HotkeyManager.swift */; };
 		A00000000000000000000033 /* PinUpDebugLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000015 /* PinUpDebugLogger.swift */; };
+		A00000000000000000000034 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000016 /* L10n.swift */; };
+		A00000000000000000000035 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000019 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,9 @@
 		A00000000000000000000013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00000000000000000000014 /* PinUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = PinUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00000000000000000000015 /* PinUpDebugLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinUpDebugLogger.swift; sourceTree = "<group>"; };
+		A00000000000000000000016 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		A00000000000000000000017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A00000000000000000000018 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,7 @@
 				A00000000000000000000066 /* Overlay */,
 				A00000000000000000000067 /* State */,
 				A00000000000000000000068 /* Support */,
+				A00000000000000000000019 /* Localizable.strings */,
 				A00000000000000000000013 /* Info.plist */,
 			);
 			path = PinUp;
@@ -158,6 +164,7 @@
 				A00000000000000000000011 /* PinUpError.swift */,
 				A00000000000000000000012 /* HotkeyManager.swift */,
 				A00000000000000000000015 /* PinUpDebugLogger.swift */,
+				A00000000000000000000016 /* L10n.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -211,6 +218,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 				Base,
 			);
 			mainGroup = A00000000000000000000050;
@@ -228,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A00000000000000000000035 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,10 +266,23 @@
 				A00000000000000000000031 /* PinUpError.swift in Sources */,
 				A00000000000000000000032 /* HotkeyManager.swift in Sources */,
 				A00000000000000000000033 /* PinUpDebugLogger.swift in Sources */,
+				A00000000000000000000034 /* L10n.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A00000000000000000000019 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A00000000000000000000017 /* en */,
+				A00000000000000000000018 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A000000000000000000000B0 /* Debug */ = {

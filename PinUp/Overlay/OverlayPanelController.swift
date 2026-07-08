@@ -22,7 +22,7 @@ final class OverlayPanelController: NSObject, NSWindowDelegate {
         let panel = panel ?? makePanel()
         didFitPanelToFirstFrame = false
         viewModel.titleText = target.displayName
-        viewModel.statusText = "Starting live preview…"
+        viewModel.statusText = L10n.tr("starting_live_preview")
         viewModel.showsProgress = true
         panel.title = target.displayName
         panel.contentAspectRatio = target.frame.size
@@ -34,7 +34,7 @@ final class OverlayPanelController: NSObject, NSWindowDelegate {
     func update(image: CGImage?) {
         viewModel.image = image
         if image != nil {
-            viewModel.statusText = "Live"
+            viewModel.statusText = L10n.tr("live")
             viewModel.showsProgress = false
         }
 

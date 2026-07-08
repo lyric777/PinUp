@@ -27,13 +27,13 @@ enum PermissionState: Equatable {
     var summaryText: String {
         switch self {
         case .ready:
-            return "Ready"
+            return L10n.tr("ready")
         case .missingAccessibility:
-            return "Accessibility Needed"
+            return L10n.tr("accessibility_needed")
         case .missingScreenRecording:
-            return "Screen Recording Needed"
+            return L10n.tr("screen_recording_needed")
         case .missingBoth:
-            return "Accessibility + Screen Recording Needed"
+            return L10n.tr("accessibility_screen_recording_needed")
         }
     }
 

@@ -10,13 +10,13 @@ final class SettingsWindowController {
             .environmentObject(appState)
 
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 420, height: 280),
+            contentRect: NSRect(x: 0, y: 0, width: 420, height: 330),
             styleMask: [.titled, .closable, .miniaturizable],
             backing: .buffered,
             defer: false
         )
 
-        window.title = "PinUp Settings"
+        window.title = L10n.tr("settings_title")
         window.isReleasedWhenClosed = false
         window.center()
         window.contentViewController = NSHostingController(rootView: rootView)
@@ -26,6 +26,10 @@ final class SettingsWindowController {
     func show() {
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
+    }
+
+    func refreshTitle() {
+        window.title = L10n.tr("settings_title")
     }
 }
 
@@ -44,7 +48,7 @@ final class PermissionsWindowController {
             defer: false
         )
 
-        window.title = "Grant Permissions"
+        window.title = L10n.tr("grant_permissions_window_title")
         window.isReleasedWhenClosed = false
         window.center()
         window.contentViewController = NSHostingController(rootView: rootView)
@@ -54,6 +58,10 @@ final class PermissionsWindowController {
     func show() {
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
+    }
+
+    func refreshTitle() {
+        window.title = L10n.tr("grant_permissions_window_title")
     }
 
     func close() {
