@@ -29,6 +29,8 @@
 		A00000000000000000000034 /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000016 /* L10n.swift */; };
 		A00000000000000000000035 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000019 /* Localizable.strings */; };
 		A00000000000000000000036 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001A /* StatusItemController.swift */; };
+		A00000000000000000000037 /* WindowInteractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001B /* WindowInteractionService.swift */; };
+		A00000000000000000000038 /* InteractionCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001C /* InteractionCaptureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		A00000000000000000000017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A00000000000000000000018 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0000000000000000000001A /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		A0000000000000000000001B /* WindowInteractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInteractionService.swift; sourceTree = "<group>"; };
+		A0000000000000000000001C /* InteractionCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionCaptureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 				A00000000000000000000064 /* FocusedWindow */,
 				A00000000000000000000065 /* Capture */,
 				A00000000000000000000066 /* Overlay */,
+				A00000000000000000000069 /* Interaction */,
 				A00000000000000000000067 /* State */,
 				A00000000000000000000068 /* Support */,
 				A00000000000000000000019 /* Localizable.strings */,
@@ -148,6 +153,7 @@
 			children = (
 				A0000000000000000000000D /* PinnedOverlayView.swift */,
 				A0000000000000000000000E /* OverlayPanelController.swift */,
+				A0000000000000000000001C /* InteractionCaptureView.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -170,6 +176,14 @@
 				A00000000000000000000016 /* L10n.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000069 /* Interaction */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000001B /* WindowInteractionService.swift */,
+			);
+			path = Interaction;
 			sourceTree = "<group>";
 		};
 		A00000000000000000000070 /* Products */ = {
@@ -271,6 +285,8 @@
 				A00000000000000000000033 /* PinUpDebugLogger.swift in Sources */,
 				A00000000000000000000034 /* L10n.swift in Sources */,
 				A00000000000000000000036 /* StatusItemController.swift in Sources */,
+				A00000000000000000000037 /* WindowInteractionService.swift in Sources */,
+				A00000000000000000000038 /* InteractionCaptureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

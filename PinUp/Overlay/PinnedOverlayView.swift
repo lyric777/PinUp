@@ -10,6 +10,7 @@ final class OverlayViewModel: ObservableObject {
 
 struct PinnedOverlayView: View {
     @ObservedObject var viewModel: OverlayViewModel
+    let interactionService: WindowInteractionService
 
     var body: some View {
         ZStack {
@@ -17,6 +18,12 @@ struct PinnedOverlayView: View {
                 Image(decorative: image, scale: 1)
                     .resizable()
                     .scaledToFit()
+
+                InteractionCaptureView(
+                    imageSize: CGSize(width: image.width, height: image.height),
+                    interactionService: interactionService
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 Color.black.opacity(0.92)
 
