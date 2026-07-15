@@ -11,6 +11,8 @@ final class PinUpAppState: ObservableObject {
     @Published private(set) var pinState: PinSessionState = .idle
     @Published private(set) var currentTarget: TargetWindowDescriptor?
     @Published private(set) var lastErrorMessage: String?
+    @Published private(set) var launchAtLoginState: LoginItemManager.State = .disabled
+    @Published private(set) var launchAtLoginErrorMessage: String?
     @Published var selectedLanguage: AppLanguage = L10n.appLanguage {
         didSet {
             guard selectedLanguage != oldValue else {
@@ -61,7 +63,29 @@ final class PinUpAppState: ObservableObject {
         }
     }
 
+    var isLaunchAtLoginEnabled: Bool {
+        launchAtLoginState == .enabled
+    }
+
+    var launchAtLoginStatusText: String {
+        if let launchAtLoginErrorMessage {
+            return launchAtLoginErrorMessage
+        }
+
+        switch launchAtLoginState {
+        case .enabled:
+            return L10n.tr("launch_at_login_status_on")
+        case .disabled:
+            return L10n.tr("launch_at_login_status_off")
+        case .requiresApproval:
+            return L10n.tr("launch_at_login_requires_approval")
+        case .unavailable:
+            return L10n.tr("launch_at_login_unavailable")
+        }
+    }
+
     private let permissionsManager = PermissionsManager()
+    private let loginItemManager = LoginItemManager()
     private let focusedWindowResolver = FocusedWindowResolver()
     private let captureService = CaptureService()
     private let overlayController = OverlayPanelController()
@@ -98,6 +122,7 @@ final class PinUpAppState: ObservableObject {
         didStart = true
         registerHotkeys()
         refreshPermissions()
+        refreshLaunchAtLogin()
 
         if permissionState != .ready {
             permissionsController.show()
@@ -126,7 +151,26 @@ final class PinUpAppState: ObservableObject {
     }
 
     func showSettings() {
+        refreshLaunchAtLogin()
         settingsController.show()
+    }
+
+    func refreshLaunchAtLogin() {
+        launchAtLoginState = loginItemManager.state
+    }
+
+    func setLaunchAtLoginEnabled(_ isEnabled: Bool) {
+        launchAtLoginErrorMessage = nil
+
+        do {
+            try loginItemManager.setEnabled(isEnabled)
+            refreshLaunchAtLogin()
+            PinUpDebugLogger.log("Launch at login changed: enabled=\(isLaunchAtLoginEnabled), state=\(launchAtLoginState)")
+        } catch {
+            refreshLaunchAtLogin()
+            launchAtLoginErrorMessage = L10n.tr("launch_at_login_update_failed_format", error.localizedDescription)
+            PinUpDebugLogger.log("Launch at login update failed: \(error.localizedDescription)")
+        }
     }
 
     func copyDebugLogToClipboard() {

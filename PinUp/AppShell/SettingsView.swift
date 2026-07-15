@@ -41,8 +41,25 @@ struct SettingsView: View {
             }
 
             GroupBox(L10n.tr("startup")) {
-                Text(L10n.tr("launch_at_login_later"))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .leading, spacing: 8) {
+                    Toggle(
+                        L10n.tr("launch_at_login"),
+                        isOn: Binding(
+                            get: {
+                                appState.isLaunchAtLoginEnabled
+                            },
+                            set: { newValue in
+                                appState.setLaunchAtLoginEnabled(newValue)
+                            }
+                        )
+                    )
+
+                    Text(appState.launchAtLoginStatusText)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
 
             Spacer()

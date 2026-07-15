@@ -12,7 +12,12 @@
 "language_english" = "English";
 "language_simplified_chinese" = "简体中文";
 "language_system" = "跟随系统";
-"launch_at_login_later" = "开机启动会在后续版本中处理。";
+"launch_at_login" = "登录时自动启动";
+"launch_at_login_requires_approval" = "macOS 需要你批准 PinUp 登录时自动启动。请检查“系统设置 > 通用 > 登录项”。";
+"launch_at_login_status_off" = "PinUp 不会在你登录后自动打开。";
+"launch_at_login_status_on" = "PinUp 会在你登录后自动打开。";
+"launch_at_login_unavailable" = "当前构建无法使用登录时自动启动。";
+"launch_at_login_update_failed_format" = "无法更新登录时自动启动：%@";
 "live" = "实时";
 "missing_capture_window" = "当前窗口暂时无法被 ScreenCaptureKit 捕获。";
 "missing_focused_window" = "没有找到当前聚焦的窗口。";

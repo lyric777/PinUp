@@ -14,6 +14,7 @@ Pin a simulator, dictionary, video call, docs page, dashboard, or any small util
 - Keep the pinned window visible above other apps
 - Move your pointer over the pinned window to interact with the original app
 - Keep the preview aligned as the original window moves or resizes
+- Launch automatically when you log in
 - Use English or Simplified Chinese
 - Run quietly from the menu bar
 

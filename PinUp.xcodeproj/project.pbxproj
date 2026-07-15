@@ -31,6 +31,7 @@
 		A00000000000000000000036 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001A /* StatusItemController.swift */; };
 		A00000000000000000000037 /* WindowInteractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001B /* WindowInteractionService.swift */; };
 		A00000000000000000000038 /* InteractionCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001C /* InteractionCaptureView.swift */; };
+		A00000000000000000000039 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001D /* LoginItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		A0000000000000000000001A /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 		A0000000000000000000001B /* WindowInteractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInteractionService.swift; sourceTree = "<group>"; };
 		A0000000000000000000001C /* InteractionCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionCaptureView.swift; sourceTree = "<group>"; };
+		A0000000000000000000001D /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				A00000000000000000000012 /* HotkeyManager.swift */,
 				A00000000000000000000015 /* PinUpDebugLogger.swift */,
 				A00000000000000000000016 /* L10n.swift */,
+				A0000000000000000000001D /* LoginItemManager.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				A00000000000000000000036 /* StatusItemController.swift in Sources */,
 				A00000000000000000000037 /* WindowInteractionService.swift in Sources */,
 				A00000000000000000000038 /* InteractionCaptureView.swift in Sources */,
+				A00000000000000000000039 /* LoginItemManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

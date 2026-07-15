@@ -12,7 +12,12 @@
 "language_english" = "English";
 "language_simplified_chinese" = "简体中文";
 "language_system" = "System";
-"launch_at_login_later" = "Launch at login is intentionally left for a later iteration.";
+"launch_at_login" = "Launch at login";
+"launch_at_login_requires_approval" = "macOS needs approval before PinUp can launch at login. Check System Settings > General > Login Items.";
+"launch_at_login_status_off" = "PinUp will not open automatically when you log in.";
+"launch_at_login_status_on" = "PinUp will open automatically when you log in.";
+"launch_at_login_unavailable" = "Launch at login is not available for this build.";
+"launch_at_login_update_failed_format" = "Could not update launch at login: %@";
 "live" = "Live";
 "missing_capture_window" = "The focused window is not available to ScreenCaptureKit right now.";
 "missing_focused_window" = "No focused window could be found.";
