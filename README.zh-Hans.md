@@ -6,6 +6,19 @@ PinUp 可以把任意 macOS 窗口固定在你的工作区上方。
 
 把模拟器、查词软件、视频会议、文档页面、监控面板，或任何小工具窗口固定住，然后继续在其他 App 里工作，不用来回切换窗口。
 
+## 下载
+
+[下载适用于 Apple 芯片的 PinUp 1.0](https://github.com/lyric777/PinUp/releases/download/v1.0.0/PinUp-1.0-macOS-arm64.zip)
+
+需要 macOS 15 或更高版本。
+
+1. 下载并解压 PinUp。
+2. 将 `PinUp.app` 移动到“应用程序”。
+3. 打开 PinUp。
+4. 如果 macOS 阻止首次启动，请前往“系统设置 > 隐私与安全性”，然后点击“仍要打开”。
+
+PinUp 直接通过 GitHub 发布。macOS 可能会要求你确认首次启动。
+
 ![PinUp demo](docs/media/pin-next-to-editor.gif)
 
 ## 亮点
@@ -27,8 +40,6 @@ PinUp 适合这些时刻：
 - 把参考资料固定在屏幕一角，在多个 App 间切换时也能看到
 - 把构建进度、监控面板、视频会议放在最上方，但不占满屏幕
 
-![Hover to interact](docs/media/hover-to-interact.gif)
-
 ## 使用方式
 
 1. 启动 PinUp。
@@ -49,8 +60,6 @@ PinUp 需要两个 macOS 权限：
 
 授予 Screen Recording 后，macOS 可能会要求你退出并重新打开 App。
 
-![Permissions](docs/media/permissions.png)
-
 ## 从源码构建
 
 要求：
@@ -70,18 +79,6 @@ xcodebuild -project PinUp.xcodeproj -scheme PinUp -configuration Debug -derivedD
 ```bash
 open .derivedData/Build/Products/Debug/PinUp.app
 ```
-
-## 需要补充的素材
-
-推荐准备这些素材：
-
-- `docs/media/pin-next-to-editor.gif`：把模拟器或小工具窗口固定在编辑器旁边，然后继续编辑。
-- `docs/media/hover-to-interact.gif`：鼠标移到固定窗口上，点击或滚动，然后回到其他 App。
-- `docs/media/follow-window.gif`：移动或调整原窗口大小，展示 PinUp 同步跟随。
-- `docs/media/menu.png`：展示菜单栏控制项。
-- `docs/media/permissions.png`：展示权限引导页面。
-
-录制时注意避开本地路径、真实项目名、token、私人消息和敏感代码。
 
 ## 说明
 

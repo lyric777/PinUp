@@ -6,6 +6,19 @@ PinUp keeps any macOS window visible above your workspace.
 
 Pin a simulator, dictionary, video call, docs page, dashboard, or any small utility window, then keep working in another app without losing sight of it.
 
+## Download
+
+[Download PinUp 1.0 for Apple Silicon](https://github.com/lyric777/PinUp/releases/download/v1.0.0/PinUp-1.0-macOS-arm64.zip)
+
+Requires macOS 15 or later.
+
+1. Download and unzip PinUp.
+2. Move `PinUp.app` to Applications.
+3. Open PinUp.
+4. If macOS blocks the first launch, open System Settings > Privacy & Security and click Open Anyway.
+
+PinUp is distributed directly through GitHub. macOS may ask you to confirm the first launch.
+
 ![PinUp demo](docs/media/pin-next-to-editor.gif)
 
 ## Highlights
@@ -27,8 +40,6 @@ PinUp is useful when you want to:
 - keep a reference page visible while switching between apps
 - watch a build, dashboard, or video call without giving it the whole screen
 
-![Hover to interact](docs/media/hover-to-interact.gif)
-
 ## Usage
 
 1. Launch PinUp.
@@ -49,8 +60,6 @@ PinUp needs two macOS permissions:
 
 After granting Screen Recording, macOS may require you to quit and reopen the app.
 
-![Permissions](docs/media/permissions.png)
-
 ## Build From Source
 
 Requirements:
@@ -70,18 +79,6 @@ Run the debug app:
 ```bash
 open .derivedData/Build/Products/Debug/PinUp.app
 ```
-
-## Media To Capture
-
-Recommended assets:
-
-- `docs/media/pin-next-to-editor.gif`: pin a simulator or utility window next to an editor, then keep editing.
-- `docs/media/hover-to-interact.gif`: hover the pinned window, click or scroll it, then return to another app.
-- `docs/media/follow-window.gif`: move or resize the original window and show PinUp following it.
-- `docs/media/menu.png`: show the menu bar controls.
-- `docs/media/permissions.png`: show the permissions onboarding screen.
-
-Avoid recording private paths, real project names, tokens, personal messages, or sensitive code.
 
 ## Notes
 
